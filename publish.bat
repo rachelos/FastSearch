@@ -54,7 +54,7 @@ git commit -m "%VERSION% %comment%"
 
 REM 执行git操作
 if %PUSH_FLAG%==1 (
-    git push -u github master 
+    git push -u github main 
     git push -u gitee master
 )
 
