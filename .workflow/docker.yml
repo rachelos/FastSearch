@@ -1,0 +1,32 @@
+version: '1.0'
+name: docker
+displayName: docker
+triggers:
+  trigger: manual
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: stage-ebe11e79
+    displayName: docker
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@docker
+        name: build_docker
+        displayName: 镜像构建
+        type: account
+        repository: registry.cn-hangzhou.aliyuncs.com/rachel_saas/fastsearch
+        username: 1327444968@qq.com
+        password: t@123654
+        tag: ${GITEE_PIPELINE_BUILD_NUMBER}
+        dockerfile: ./Dockerfile
+        context: ''
+        artifacts: []
+        isCache: true
+        parameter: {}
+        notify: []
+        strategy:
+          retry: '0'

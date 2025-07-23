@@ -1,0 +1,13 @@
+.vscode
+/fastsearch
+/tmp/
+/index/
+/.idea/
+/*/*.bin
+/cache
+/tests/index
+/data/
+/spiders-for-gov
+# /vendor
+*.exe
+config.yaml

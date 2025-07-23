@@ -1,0 +1,11 @@
+listeners:
+  - type: "tcp"
+    id: "fastsearch"
+    address: ":1883"
+  - type: "ws"
+    id: "ws"
+    address: ":1882"
+  - type: "sysinfo"
+    id: "stats"
+    address: ":1880"
+inline_client: true

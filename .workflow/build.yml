@@ -1,0 +1,47 @@
+version: '1.0'
+name: pipeline-20240905
+displayName: build
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - ''
+stages:
+  - name: stage-c6bb6674
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@golang
+        name: build_golang
+        displayName: Golang 构建
+        golangVersion: '1.12'
+        commands:
+          - '# 默认使用goproxy.cn'
+          - export GOPROXY=https://goproxy.cn
+          - export GO111MODULE=aut
+          - '# 输入你的构建命令'
+          - make build
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./dist
+        caches:
+          - /go/pkg/mod
+        notify:
+          - certificate: 9d28b7c0-4d52-013d-658e-6a97d7855334
+            events:
+              - success
+            content:
+              - repository
+              - pipeline
+              - stage
+              - task
+              - operator
+              - branch
+              - detail
+            type: dingtalk
+        strategy:
+          retry: '0'

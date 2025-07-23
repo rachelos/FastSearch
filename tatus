@@ -1,0 +1,48 @@
+[33mcommit ae836115336715ad8e56051993d082245d583baf[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: t@123654 <1327444968@qq.com>
+Date:   Wed Jul 23 17:05:05 2025 +0800
+
+     1.0.0  1.0.0
+
+[1mdiff --git a/publish.bat b/publish.bat[m
+[1mindex 09f43f0..ebad4e4 100644[m
+[1m--- a/publish.bat[m
+[1m+++ b/publish.bat[m
+[36m@@ -30,17 +30,16 @@[m [mif %WEB_FLAG%==1 ([m
+     call build.bat[m
+     cd ../[m
+ )[m
+[31m-[m
+[32m+[m[32mset VERSION=""[m
+ REM 从core/version.go中读取版本号[m
+[31m-for /f "tokens=3 delims==" %%v in ('type core\version.go ^| find "VERSION"') do set VERSION=%%v[m
+[31m-if "%VERSION%"=="" ([m
+[32m+[m[32mfor /f "tokens=2 delims==" %%v in ('type core\version.go ^| find "VERSION"') do set VERSION=%%~v[m
+[32m+[m[32mif %VERSION%=="" ([m
+     echo 错误：无法从core/version.go读取版本号[m
+     exit /b 1[m
+ )[m
+ set tag=v%VERSION%[m
+ echo 当前版本: %VERSION% TAG: %tag%[m
+ [m
+[31m-[m
+ REM 设置comment[m
+ echo %COMMENT_FLAG%[m
+ if %COMMENT_FLAG%==1 ([m
+[36m@@ -51,13 +50,11 @@[m [mif %COMMENT_FLAG%==1 ([m
+ [m
+ echo %comment%[m
+ git add .[m
+[31m-git tag -a "v%VERSION%" -m "%VERSION%"[m
+ git commit -m "%VERSION% %comment%"[m
+ [m
+ REM 执行git操作[m
+ if %PUSH_FLAG%==1 ([m
+     git push -u origin main [m
+[31m-    git push origin  %tag%[m
+     git push -u gitee main[m
+[31m-    git push gitee  %tag%[m
+[31m-)[m
+\ No newline at end of file[m
+[32m+[m[32m)[m
+[41m+[m
